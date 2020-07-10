@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Kinto-multikey
+GenericName=Kinto-multikey
+Comment=Multikey Keybinds
+Exec=/bin/bash -c "/bin/sleep 5 && /usr/bin/systemctl --user start keyswap"
+Terminal=false
+Type=Application
+X-GNOME-Autostart-enabled=true
