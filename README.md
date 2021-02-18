@@ -7,3 +7,6 @@ Anki-Quickkey aims to mitigate this problem by incorporating Anki functions onto
 Read a fact you need to add to Anki? Press a key to bring up Anki.addcard(), type your fact, and press <kbd>ctrl</kbd><kbd>enter</kbd> to add it to your Anki library. 
 
 Need to lookup your anki database? Press a key to bring up Anki.browser and have access to your Anki second brain anytime. 
+
+Requirements:
+Linux desktop with permissions
