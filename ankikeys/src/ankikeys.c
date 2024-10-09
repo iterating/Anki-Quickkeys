@@ -1,16 +1,16 @@
 // -*- coding:utf-8-unix; mode:c; -*-
-// Kinto x11 command line
+// ankinate x11 command line
 /*
   Reference material
   get the active window on X window system
   http://k-ui.jp/blog/2012/05/07/get-active-window-on-x-window-system/
  */
 // To compile without static libraries
-// gcc kintox11.c -lX11 -lXmu -ljson-c
+// gcc ankikeys.c -lX11 -lXmu -ljson-c
 //
 // To compile with static library json-c 
 // Make sure archive with object files exist ar -t /usr/local/lib/libjson-c.a
-// gcc -L/usr/local/lib/ kintox11.c -ljson-c -lXmu -lXt -lX11 -O2 -o kintox11
+// gcc -L/usr/local/lib/ ankikeys.c -ljson-c -lXmu -lXt -lX11 -O2 -o ankikeys
 //
 
 #define _GNU_SOURCE 1
@@ -93,7 +93,7 @@ int check_caret(){
   int caretint;
   char * fpname;
   fpname = malloc(sizeof(char)*20);
-  strcpy(fpname,"/tmp/kinto/caret");
+  strcpy(fpname,"/tmp/ankinate/caret");
   if( access( fpname, F_OK ) != -1 ) {
     char *buffer = NULL;
     size_t size = 0;
@@ -246,7 +246,7 @@ Display* open_display(){
   }
   if(d == NULL){
     printf("fail to open X server display for 1 minute...\n");
-    printf("Kintox11 is now exiting...\n");
+    printf("ankikeys is now exiting...\n");
     exit(1);
   }
   return d;

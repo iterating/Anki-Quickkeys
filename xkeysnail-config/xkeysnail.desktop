@@ -1,6 +1,6 @@
 [Desktop Entry]
-Name=Kinto_xkey
-GenericName=Kinto_xkey
+Name=ankinate_xkey
+GenericName=ankinate_xkey
 Comment=Make Linux Type Like it's a Mac
 Exec=/bin/bash -c "{xhost} +SI:localuser:root && sudo {systemctl} restart xkeysnail"
 Terminal=false

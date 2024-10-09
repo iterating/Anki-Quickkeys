@@ -1,4 +1,4 @@
-# GalliumOS Notes
+# Xforce
 
 xfconf-query -c xfce4-keyboard-shortcuts -lv | grep "show_desktop_key\|cycle_windows_key\|cycle_reverse_windows_key\|close_window_key\|maximize_window_key\|xfce4-popup-whiskermenu\|move_window_next_workspace_key\|move_window_prev_workspace_key\|hide" | grep -v "default\|<Alt>m"
 

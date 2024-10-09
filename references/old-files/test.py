@@ -277,39 +277,39 @@ if uitype == 'gui':
         if apply_rules == '1':
             subprocess.check_output('setxkbmap -option;xkbcomp -w0 -I$HOME/.xkb ~/.xkb/keymap/kbd.chromebook.gui $DISPLAY', shell=True).decode('utf-8')
         print()
-        print("Testing chromebook - GUI apps - Kinto keymapping...")
+        print("Testing chromebook - GUI apps - ankinate keymapping...")
         chromebook_keys_gui()
 
     if windows == '1':
         if apply_rules == '1':
             subprocess.check_output('setxkbmap -option;xkbcomp -w0 -I$HOME/.xkb ~/.xkb/keymap/kbd.mac.gui $DISPLAY', shell=True).decode('utf-8')
         print()
-        print ("Testing windows keyboard - GUI apps - Kinto keymapping...")
+        print ("Testing windows keyboard - GUI apps - ankinate keymapping...")
         windows_keys_gui()
 
     if mac == '1':
         if apply_rules == '1':
             subprocess.check_output('setxkbmap -option;xkbcomp -w0 -I$HOME/.xkb ~/.xkb/keymap/kbd.mac.gui $DISPLAY', shell=True).decode('utf-8')
-        print ("Testing mac keyboard - GUI apps - Kinto keymapping...")
+        print ("Testing mac keyboard - GUI apps - ankinate keymapping...")
         mac_keys_gui()
 
 if uitype == 'term':
     if chromebook == '1':
         if apply_rules == '1':
             subprocess.check_output('setxkbmap -option;setxkbmap -option altwin:swap_lalt_lwin', shell=True).decode('utf-8')
-        print("Testing chromebook - terminal - Kinto keymapping...")
+        print("Testing chromebook - terminal - ankinate keymapping...")
         chromebook_keys_terminal()
 
     if windows == '1':
         if apply_rules == '1':
             subprocess.check_output('setxkbmap -option;setxkbmap -option altwin:swap_alt_win', shell=True).decode('utf-8')
-        print ("Testing windows keyboard - terminal - Kinto keymapping...")
+        print ("Testing windows keyboard - terminal - ankinate keymapping...")
         windows_keys_terminal()
 
     if mac == '1':
         if apply_rules == '1':
             subprocess.check_output('setxkbmap -option;setxkbmap -option altwin:swap_alt_win', shell=True).decode('utf-8')
-        print ("Testing mac keyboard - terminal - Kinto keymapping...")
+        print ("Testing mac keyboard - terminal - ankinate keymapping...")
         mac_keys_terminal()
         
 if apply_rules == '1':

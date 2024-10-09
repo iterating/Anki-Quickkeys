@@ -8,9 +8,9 @@ Restart=always
 # eg DISPLAY=:0.0
 #Environment=DISPLAY={displayid}
 RestartSec=1
-WorkingDirectory={homedir}/.config/kinto
-ExecStart=/bin/bash -c "{homedir}/.config/kinto/xactive.sh carrots"
-ExecStop=/bin/bash {homedir}/.config/kinto/cleanup.sh
+WorkingDirectory={homedir}/.config/ankinate
+ExecStart=/bin/bash -c "{homedir}/.config/ankinate/xactive.sh carrots"
+ExecStop=/bin/bash {homedir}/.config/ankinate/cleanup.sh
 
 [Install]
 WantedBy=default.target

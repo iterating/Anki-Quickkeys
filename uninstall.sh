@@ -11,8 +11,8 @@ systemctl --user stop keyswap.timer 2>/dev/null
 systemctl --user disable keyswap.timer
 rm ~/.config/systemd/user/keyswap.service
 rm ~/.config/systemd/user/keyswap.timer
-rm -rf ~/.config/autostart/kinto.desktop
-rm -rf ~/.config/kinto
+rm -rf ~/.config/autostart/ankinate.desktop
+rm -rf ~/.config/ankinate
 rm -rf ~/.xkb
 sudo systemctl daemon-reload
 sed -i '/xkb/d' ~/.Xsession 2>/dev/null

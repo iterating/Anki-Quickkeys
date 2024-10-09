@@ -1,6 +1,6 @@
 [Desktop Entry]
-Name=Kinto-multikey
-GenericName=Kinto-multikey
+Name=ankinate-multikey
+GenericName=ankinate-multikey
 Comment=Multikey Keybinds
 Exec=/bin/bash -c "/bin/sleep 5 && /usr/bin/systemctl --user start keyswap"
 Terminal=false

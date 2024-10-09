@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Kinto - Python implementation of Xlib
+# ankinate - Python implementation of Xlib
 #
 # Based on code by Stephan Sokolow
 # Source: https://gist.github.com/ssokolow/e7c9aae63fb7973e4d64cff969a78ae8

@@ -1,6 +1,6 @@
 /*
 On OS X, basic text manipulations (left, right, command+left, etc) make use of the system key bindings,
-and don't need to be repeated here. Anything listed here will take precedence, however.
+and don't need to be repeated here. Anything listed here will take precedence
 */
 [
 	{ "keys": ["ctrl+shift+n"], "command": "new_window" },

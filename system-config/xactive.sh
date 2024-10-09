@@ -3,8 +3,8 @@
 if [ $# -eq 0 ]
   then
     # No arguments
-    ./kintox11
+    ./ankikeys
 else
 	./caret_status.sh &
-	./kintox11
+	./ankikeys
 fi
