@@ -42,22 +42,8 @@ Need to lookup your anki database? Press a key to bring up Anki.browser and have
 
 Modify the `user_config.json` file to customize the key mappings and other settings.
 
-## Contributing
-
-Contributions are welcome! Please fork the repository and submit a pull request.
-
 ## License
 
 This project is licensed under the GPL-2.0 License. See the LICENSE file for details.
-
-## Acknowledgements
-
-- [Anki](https://apps.ankiweb.net/) - The powerful, intelligent flashcard program.
-
-## Contact
-
-For any questions or feedback, please open an issue on the [GitHub repository](https://github.com/iterating/ankikeys).
-
-
 
 
