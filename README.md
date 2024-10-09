@@ -42,6 +42,9 @@ Need to lookup your anki database? Press a key to bring up Anki.browser and have
 
 Modify the `user_config.json` file to customize the key mappings and other settings.
 
+## Aknowledgements
+Ankikeys is built from xkeysnails
+
 ## License
 
 This project is licensed under the GPL-2.0 License. See the LICENSE file for details.
