@@ -2,7 +2,7 @@
 import json, time, os, sys, subprocess, shlex, platform
 from shutil import copyfile
 from subprocess import PIPE, Popen
-from preankinate import *
+from preankikeys import *
 
 homedir = os.path.expanduser("~")
 
@@ -21,45 +21,45 @@ def windows_setup():
 		print("This install will fail if you are not running with elevated privileges")
 		os.system('powershell -executionpolicy bypass ".\\windows\\autohotkey.ps1"')
 		print("Copying autohotkey combinations for Terminals & Editors...")
-		os.system("copy /Y " + path + "\\windows\\ankinate.ahk " + path + "\\windows\\ankinate-new.ahk")
+		os.system("copy /Y " + path + "\\windows\\ankikeys.ahk " + path + "\\windows\\ankikeys-new.ahk")
 	if default == 1:
-		os.system('C:\\Strawberry\\perl\\bin\\perl.exe -pi -e "s/(; )(.*)(; MacModifiers)/$2$3/g" .\\windows\\ankinate-new.ahk')
+		os.system('C:\\Strawberry\\perl\\bin\\perl.exe -pi -e "s/(; )(.*)(; MacModifiers)/$2$3/g" .\\windows\\ankikeys-new.ahk')
 	elif default == 2:	
-		os.system('C:\\Strawberry\\perl\\bin\\perl.exe -pi -e "s/(; )(.*)(; WinModifiers)/$2$3/g" .\\windows\\ankinate-new.ahk')
+		os.system('C:\\Strawberry\\perl\\bin\\perl.exe -pi -e "s/(; )(.*)(; WinModifiers)/$2$3/g" .\\windows\\ankikeys-new.ahk')
 	elif default == 3:
 		print("Removing any old registry keys from prior versions...")
 		p = subprocess.Popen(['powershell.exe', "Remove-ItemProperty -Path HKLM:'SYSTEM\CurrentControlSet\Control\Keyboard Layout' -Name 'Scancode Map' -ErrorAction SilentlyContinue"], stdout=sys.stdout)
-		print("Removing ankinate from Startup folder...")
-		os.system("(del \"C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\StartUp\\ankinate.ahk\") 2> nul")
-		os.system('(del "%userprofile%\\AppData\\Roaming\\Microsoft\\Windows\\STARTM~1\\Programs\\Startup\\ankinate-start.vbs") 2> nul')
-		print("Ending any running ankinate tasks...")
+		print("Removing ankikeys from Startup folder...")
+		os.system("(del \"C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\StartUp\\ankikeys.ahk\") 2> nul")
+		os.system('(del "%userprofile%\\AppData\\Roaming\\Microsoft\\Windows\\STARTM~1\\Programs\\Startup\\ankikeys-start.vbs") 2> nul')
+		print("Ending any running ankikeys tasks...")
 		os.system("(taskkill /IM autohotkey.exe) 2> nul")
-		print("Removing ankinate from users profile directory...")
-		os.system('(rd /s /q %userprofile%\\.ankinate) 2> nul')
+		print("Removing ankikeys from users profile directory...")
+		os.system('(rd /s /q %userprofile%\\.ankikeys) 2> nul')
 		print("")
-		print("Uninstall of ankinate is Complete.")
+		print("Uninstall of ankikeys is Complete.")
 	if default > 0 and default < 3:
 		stvscode = yn_choice(bcolors.CYELLOW2 + "Would you like to use Sublime Text 3 keymaps in VS Code?\n" + bcolors.ENDC)
 		print("\nWill now install Ubuntu Termimnal Theme as default...")
 		os.system("regedit " + path + "\\windows\\theme_ubuntu.reg")
-		os.system('robocopy '+ path + '\\assets "%userprofile%\\.ankinate\\assets" /E')
+		os.system('robocopy '+ path + '\\assets "%userprofile%\\.ankikeys\\assets" /E')
 		if(stvscode):
-			os.system('C:\\Strawberry\\perl\\bin\\perl.exe -pi -e "s/(; )(.*)(; ST2CODE)/$2$3/g" .\\windows\\ankinate-new.ahk')
-		os.system('copy /Y ' + path + '\\windows\\ankinate-start.vbs "%userprofile%\\.ankinate\\ankinate-start.vbs')
-		os.system('copy /Y ' + path + '\\windows\\usb.vbs "%userprofile%\\.ankinate\\usb.vbs"')
-		os.system('copy /Y ' + path + '\\windows\\detectUSB.ahk "%userprofile%\\.ankinate\\detectUSB.ahk"')
-		os.system('mklink "%userprofile%\\Start Menu\\Programs\\Startup\\ankinate-start.vbs" "%userprofile%\\.ankinate\\ankinate-start.vbs"')
-		os.system('copy /Y '+ path + '\\windows\\NoShell.vbs "%userprofile%\\.ankinate\\NoShell.vbs"')
-		os.system('copy /Y '+ path + '\\windows\\toggle_kb.bat "%userprofile%\\.ankinate\\toggle_kb.bat"')
-		os.system('copy /Y '+ path + '\\windows\\ankinate-new.ahk "%userprofile%\\.ankinate\\ankinate.ahk"')
-		os.system("del /f .\\windows\\ankinate-new.ahk")
-		os.system("del \"C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\StartUp\\ankinate.ahk\" 2> nul")
-		os.system("%userprofile%\\AppData\\Roaming\\Microsoft\\Windows\\STARTM~1\\Programs\\Startup\\ankinate-start.vbs")
+			os.system('C:\\Strawberry\\perl\\bin\\perl.exe -pi -e "s/(; )(.*)(; ST2CODE)/$2$3/g" .\\windows\\ankikeys-new.ahk')
+		os.system('copy /Y ' + path + '\\windows\\ankikeys-start.vbs "%userprofile%\\.ankikeys\\ankikeys-start.vbs')
+		os.system('copy /Y ' + path + '\\windows\\usb.vbs "%userprofile%\\.ankikeys\\usb.vbs"')
+		os.system('copy /Y ' + path + '\\windows\\detectUSB.ahk "%userprofile%\\.ankikeys\\detectUSB.ahk"')
+		os.system('mklink "%userprofile%\\Start Menu\\Programs\\Startup\\ankikeys-start.vbs" "%userprofile%\\.ankikeys\\ankikeys-start.vbs"')
+		os.system('copy /Y '+ path + '\\windows\\NoShell.vbs "%userprofile%\\.ankikeys\\NoShell.vbs"')
+		os.system('copy /Y '+ path + '\\windows\\toggle_kb.bat "%userprofile%\\.ankikeys\\toggle_kb.bat"')
+		os.system('copy /Y '+ path + '\\windows\\ankikeys-new.ahk "%userprofile%\\.ankikeys\\ankikeys.ahk"')
+		os.system("del /f .\\windows\\ankikeys-new.ahk")
+		os.system("del \"C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\StartUp\\ankikeys.ahk\" 2> nul")
+		os.system("%userprofile%\\AppData\\Roaming\\Microsoft\\Windows\\STARTM~1\\Programs\\Startup\\ankikeys-start.vbs")
 
 	# 	# print("\nPlease log off and back on for changes to take full effect.")
 		print("If using WSL then please remember to right click on title bar -> Properties -> Edit Options -> Use Ctrl+Shift+C/V as Copy/Paste and enable it.")
 	else:
-		os.system("(del \"C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\StartUp\\ankinate.ahk\") 2> nul")
+		os.system("(del \"C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\StartUp\\ankikeys.ahk\") 2> nul")
 
 def cmdline(command):
     process = Popen(
@@ -92,7 +92,7 @@ dename = cmdline("./system-config/dename.sh").replace('"','').strip().split(" ")
 run_pkg = ""
 
 def requirements(pkgm):
-	print(bcolors.CYELLOW2 + "You need to install some packages, " +run_pkg+ ", for ankinate to fully remap browsers during input focus.\n" + bcolors.ENDC)
+	print(bcolors.CYELLOW2 + "You need to install some packages, " +run_pkg+ ", for ankikeys to fully remap browsers during input focus.\n" + bcolors.ENDC)
 	print("sudo " + pkgm + " " + run_pkg + "\n")
 	run_install = yn_choice(bcolors.CYELLOW2 + "Would you like to run it now? (Will require sudo privileges.)\n" + bcolors.ENDC)
 	if(run_install):
@@ -125,8 +125,8 @@ def setShortcuts():
 	global distro
 	distroVersion = cmdline("awk -F= '$1==\"VERSION_ID\" { print $2 ;}' /etc/os-release").replace('"','').strip()
 	
-	print("\nIf ankinate is already running it will be stopped...")
-	print("If you cancel the installer you can re-run ankinate via\n systemctl --user start keyswap")
+	print("\nIf ankikeys is already running it will be stopped...")
+	print("If you cancel the installer you can re-run ankikeys via\n systemctl --user start keyswap")
 
 	cmdline("systemctl --user stop keyswap")
 	print("\nDetected " + distro + " " + distroVersion.strip() + " DE: " + dename + "\n")
@@ -136,7 +136,7 @@ def setShortcuts():
 		if dename == "gnome" or dename == "mate" or dename == "budgie":
 			cmdline('dconf dump /org/gnome/desktop/wm/keybindings/ > keybindings_`date +"%Y.%m.%d-%s"`.conf')
 			cmdline('dconf dump /org/gnome/mutter/keybindings/ > mutter_`date +"%Y.%m.%d-%s"`.conf')
-			if(ankinatetype == 1):
+			if(ankikeystype == 1):
 				cmdline("gsettings set org.gnome.desktop.wm.keybindings switch-applications \"['<Primary>Tools','<Alt>Tab']\"")
 				cmdline("gsettings set org.gnome.desktop.wm.keybindings switch-applications-backward \"['<Primary><Shift>Tools','<Alt><Shift>Tab']\"")
 			else:
@@ -172,7 +172,7 @@ def setShortcuts():
 			cmdline("gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left ['']")
 			cmdline("gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right ['']")
 		elif distro == "elementary" and dename == "gnome":
-			if(ankinatetype == 1):
+			if(ankikeystype == 1):
 				cmdline("gsettings set org.gnome.desktop.wm.keybindings switch-applications \"['<Primary>Tools','<Alt>Tab']\"")
 				cmdline("gsettings set org.gnome.desktop.wm.keybindings switch-applications-backward \"['<Primary><Shift>Tools','<Alt><Shift>Tab']\"")
 			else:
@@ -238,7 +238,7 @@ def setShortcuts():
 			cmdline('cp ~/.config/kglobalshortcutsrc ./kde_kglobalshortcutsrc_`date +"%Y.%m.%d-%s"`')
 			cmdline('kwriteconfig5 --file "$HOME/.config/kglobalshortcutsrc" --group "kwin" --key "Switch to Previous Desktop" "Meta+Left,Meta+Left,Switch to Previous Desktop"')
 			cmdline('kwriteconfig5 --file "$HOME/.config/kglobalshortcutsrc" --group "kwin" --key "Window Operations Menu" "none,Alt+F3,Window Operations Menu"')
-			if(ankinatetype == 1):
+			if(ankikeystype == 1):
 				cmdline('kwriteconfig5 --file "$HOME/.config/kglobalshortcutsrc" --group "kwin" --key "Walk Through Windows" "Ctrl+Tools,Alt+Tab,Walk Through Windows"')
 				cmdline('kwriteconfig5 --file "$HOME/.config/kglobalshortcutsrc" --group "kwin" --key "Walk Through Windows (Reverse)" "Ctrl+Shift+Tools,Alt+Shift+Backtab,Walk Through Windows (Reverse)"')
 				cmdline('kwriteconfig5 --file "$HOME/.config/kglobalshortcutsrc" --group "kwin" --key "Walk Through Windows of Current Application" "Alt+F6,none,Walk Through Windows of Current Application"')
@@ -266,7 +266,7 @@ def setShortcuts():
 			# cmdline('dconf update')
 
 def Uninstall():
-	print("You selected to Uninstall ankinate.\n")
+	print("You selected to Uninstall ankikeys.\n")
 	restore = yn_choice("\nYour DE is " + dename + ".\n\nY: Restore hotkeys from backup\nN: Reset OS/DE hotkeys\nWhich option would you prefer?")
 	print("")
 	if(restore):
@@ -313,8 +313,8 @@ def Uninstall():
 			cmdline('dconf load /org/gnome/mutter/ < mutter.conf')
 		elif dename == "kde":
 			print("Resetting DE hotkeys...\n")
-			cmdline('mv ~/.config/kwinrc ~/.config/kwinrc.ankinate')
-			cmdline('mv ~/.config/kglobalshortcutsrc ~/.config/kglobalshortcutsrc.ankinate')
+			cmdline('mv ~/.config/kwinrc ~/.config/kwinrc.ankikeys')
+			cmdline('mv ~/.config/kglobalshortcutsrc ~/.config/kglobalshortcutsrc.ankikeys')
 		elif dename == "xfce":
 			print("Resetting DE hotkeys...\n")
 			cmdline('cp /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml')
@@ -325,7 +325,7 @@ def Uninstall():
 		if dename == "kde" or dename == "xfce":
 			print("Please log off and back on for your original DE hotkeys to take effect.")
 
-def ankinateImpOne():
+def ankikeysImpOne():
 
 	check_xbind = cmdline("which xbindkeys 2>/dev/null").strip()
 	check_xdotool = cmdline("which xdotool 2>/dev/null").strip()
@@ -396,8 +396,8 @@ except IOError:
 	exit()
 f.close()
 
-if os.path.isdir(homedir + "/.config/ankinate") == False:
-	os.mkdir(homedir + "/.config/ankinate")
+if os.path.isdir(homedir + "/.config/ankikeys") == False:
+	os.mkdir(homedir + "/.config/ankikeys")
 	time.sleep(0.5)
 
 with open('defaults.json') as json_file:
@@ -406,31 +406,31 @@ with open('defaults.json') as json_file:
 
 color_arr = [bcolors.CBEIGE,bcolors.CRED2,bcolors.CGREEN,bcolors.CYELLOW ]
 
-print("\nankinate - Type in Linux like it's a Mac.\n")
+print("\nankikeys - Type in Linux like it's a Mac.\n")
 
-ankinatetype = int(input(color_arr[2] +
-	"1) ankinate - xkeysnail (udev/x11) - Recommended\n" + color_arr[0] +
-	"2) ankinate - Original xkb/x11 implementation\n" + color_arr[3] +
-	"3) Uninstall ankinate - xkeysnail\n" +
-	"4) Uninstall ankinate - Original xkb\n\n"
+ankikeystype = int(input(color_arr[2] +
+	"1) ankikeys - xkeysnail (udev/x11) - Recommended\n" + color_arr[0] +
+	"2) ankikeys - Original xkb/x11 implementation\n" + color_arr[3] +
+	"3) Uninstall ankikeys - xkeysnail\n" +
+	"4) Uninstall ankikeys - Original xkb\n\n"
 	+ bcolors.ENDC))
 print("")
-if(ankinatetype == 1):
+if(ankikeystype == 1):
 	subprocess.check_call(shlex.split("./xkeysnail_service.sh"))
-	if os.path.isdir(homedir + "/.config/ankinate") == True:
+	if os.path.isdir(homedir + "/.config/ankikeys") == True:
 		setShortcuts()
 		subprocess.check_call(shlex.split("./xkeysnail_service.sh budgieUpdate"))
 	exit()
 
-if(ankinatetype == 3):
+if(ankikeystype == 3):
 	subprocess.check_call(shlex.split("./xkeysnail_service.sh uninstall"))
 	exit()
 
-if(ankinatetype == 4):
+if(ankikeystype == 4):
 	Uninstall()
 	exit()
 
-ankinateImpOne()
+ankikeysImpOne()
 
 for index, item in enumerate(data['defaulttypes']):
 	ossym = ""
@@ -454,16 +454,16 @@ if default == len(data['defaulttypes'])+1:
 	exit()
 
 try:
-	f = open(homedir + "/.config/ankinate/user_config.json")
-	rewrite = yn_choice("~/.config/ankinate/user_config.json already exists. Do you want to overwrite it with a new config?")
+	f = open(homedir + "/.config/ankikeys/user_config.json")
+	rewrite = yn_choice("~/.config/ankikeys/user_config.json already exists. Do you want to overwrite it with a new config?")
 	print("")
 	if(rewrite):
-		copyfile("user_config.json", homedir + "/.config/ankinate/user_config.json")
+		copyfile("user_config.json", homedir + "/.config/ankikeys/user_config.json")
 	else:
 		exit()
 except IOError:
 	pass
-	copyfile("user_config.json", homedir + "/.config/ankinate/user_config.json")
+	copyfile("user_config.json", homedir + "/.config/ankikeys/user_config.json")
 finally:
     f.close()
 
@@ -533,7 +533,7 @@ cmdline('sed -i '' -e "' + types_line + 's/\\"/' + keyboardconfigs[defaultkb-1][
 
 setShortcuts()
 
-user_file = homedir + '/.config/ankinate/user_config.json'
+user_file = homedir + '/.config/ankikeys/user_config.json'
 with open(user_file, 'r') as f:
     user_config = json.load(f)
 
@@ -590,7 +590,7 @@ user_config['config'][3]['run'] = keyboardconfigs[defaultkb-1]['gui'].replace("k
 os.remove(user_file)
 with open(user_file, 'w') as f:
     json.dump(user_config, f, indent=4)
-print("Saved configuration to ~/.config/ankinate/user_config.json\n")
+print("Saved configuration to ~/.config/ankikeys/user_config.json\n")
 print("Now running keyswap_service.sh to setup the keyswap service...")
 print("Keyswap will be configured to run on user login\n")
 print("You may start, stop, restart or view the status of the service with following commands\n")

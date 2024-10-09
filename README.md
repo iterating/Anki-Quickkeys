@@ -1,6 +1,6 @@
-# ankikeysQuickkeys
+# Ankikeys
 
-ankikeysQuickkeys turns your modifier keys into single button multifunction keys, adding 9 programmable keys on a standard keyboard. Designed for use with Anki, this tool aims to enhance your productivity by integrating Anki functions directly onto your desktop.
+Ankikeys turns your modifier keys into single button multifunction keys, adding 9 programmable keys on a standard keyboard. Designed for use with Anki, this tool aims to enhance your productivity by integrating Anki functions directly onto your desktop.
 
 Anki is an effective tool for learning. However, its utility is limited by speed of use, and many students find it difficult to incorporate Anki into thier studies in a timely manner. 
 

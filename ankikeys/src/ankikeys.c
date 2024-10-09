@@ -1,5 +1,5 @@
 // -*- coding:utf-8-unix; mode:c; -*-
-// ankinate x11 command line
+// ankikeys x11 command line
 /*
   Reference material
   get the active window on X window system
@@ -93,7 +93,7 @@ int check_caret(){
   int caretint;
   char * fpname;
   fpname = malloc(sizeof(char)*20);
-  strcpy(fpname,"/tmp/ankinate/caret");
+  strcpy(fpname,"/tmp/ankikeys/caret");
   if( access( fpname, F_OK ) != -1 ) {
     char *buffer = NULL;
     size_t size = 0;

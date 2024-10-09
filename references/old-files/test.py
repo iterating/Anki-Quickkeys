@@ -277,39 +277,39 @@ if uitype == 'gui':
         if apply_rules == '1':
             subprocess.check_output('setxkbmap -option;xkbcomp -w0 -I$HOME/.xkb ~/.xkb/keymap/kbd.chromebook.gui $DISPLAY', shell=True).decode('utf-8')
         print()
-        print("Testing chromebook - GUI apps - ankinate keymapping...")
+        print("Testing chromebook - GUI apps - ankikeys keymapping...")
         chromebook_keys_gui()
 
     if windows == '1':
         if apply_rules == '1':
             subprocess.check_output('setxkbmap -option;xkbcomp -w0 -I$HOME/.xkb ~/.xkb/keymap/kbd.mac.gui $DISPLAY', shell=True).decode('utf-8')
         print()
-        print ("Testing windows keyboard - GUI apps - ankinate keymapping...")
+        print ("Testing windows keyboard - GUI apps - ankikeys keymapping...")
         windows_keys_gui()
 
     if mac == '1':
         if apply_rules == '1':
             subprocess.check_output('setxkbmap -option;xkbcomp -w0 -I$HOME/.xkb ~/.xkb/keymap/kbd.mac.gui $DISPLAY', shell=True).decode('utf-8')
-        print ("Testing mac keyboard - GUI apps - ankinate keymapping...")
+        print ("Testing mac keyboard - GUI apps - ankikeys keymapping...")
         mac_keys_gui()
 
 if uitype == 'term':
     if chromebook == '1':
         if apply_rules == '1':
             subprocess.check_output('setxkbmap -option;setxkbmap -option altwin:swap_lalt_lwin', shell=True).decode('utf-8')
-        print("Testing chromebook - terminal - ankinate keymapping...")
+        print("Testing chromebook - terminal - ankikeys keymapping...")
         chromebook_keys_terminal()
 
     if windows == '1':
         if apply_rules == '1':
             subprocess.check_output('setxkbmap -option;setxkbmap -option altwin:swap_alt_win', shell=True).decode('utf-8')
-        print ("Testing windows keyboard - terminal - ankinate keymapping...")
+        print ("Testing windows keyboard - terminal - ankikeys keymapping...")
         windows_keys_terminal()
 
     if mac == '1':
         if apply_rules == '1':
             subprocess.check_output('setxkbmap -option;setxkbmap -option altwin:swap_alt_win', shell=True).decode('utf-8')
-        print ("Testing mac keyboard - terminal - ankinate keymapping...")
+        print ("Testing mac keyboard - terminal - ankikeys keymapping...")
         mac_keys_terminal()
         
 if apply_rules == '1':

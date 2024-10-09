@@ -9,5 +9,5 @@ if [ -f {homedir}/.config/systemd/user/keyswap.service ]; then
 fi
 
 # export DISPLAY={displayid};/usr/bin/xhost +SI:localuser:root
-mkdir -p /tmp/ankinate/xkeysnail
-cp {homedir}/.config/ankinate/ankinate-multikey.py /tmp/ankinate/xkeysnail/ankinate-multikey.py
+mkdir -p /tmp/ankikeys/xkeysnail
+cp {homedir}/.config/ankikeys/ankikeys-multikey.py /tmp/ankikeys/xkeysnail/ankikeys-multikey.py

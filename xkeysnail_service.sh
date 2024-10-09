@@ -33,8 +33,8 @@ function uninstall {
 			dconf load /org/gnome/mutter/ < mutter.conf
 		elif [ "$dename" == "kde" ];then
 			echo "Resetting DE hotkeys..."
-			mv ~/.config/kwinrc ~/.config/kwinrc.ankinate
-			mv ~/.config/kglobalshortcutsrc ~/.config/kglobalshortcutsrc.ankinate
+			mv ~/.config/kwinrc ~/.config/kwinrc.ankikeys
+			mv ~/.config/kglobalshortcutsrc ~/.config/kglobalshortcutsrc.ankikeys
 		elif [ "$dename" == "xfce" ];then
 			echo "Resetting DE hotkeys..."
 			cp /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
@@ -150,7 +150,7 @@ function budgieUpdate {
 }
 
 if [ $# -eq 0 ]; then
-	echo "Install ankinate - xkeysnail (udev)"
+	echo "Install ankikeys - xkeysnail (udev)"
 	echo "  1) Windows & Mac (HID driver) - Most Standard keyboards (& 1st party usb/bt Apple keyboards)"
 	echo "  2) Mac Only & VMs on Macbooks - 3rd & 1st party Apple keyboards"
 	echo "  3) Chromebook - Chromebook running Linux"
@@ -186,7 +186,7 @@ if [[ $1 == "1" || $1 == "2" || $1 == "3" || $1 == "winmac" || $1 == "mac" || $1
 		while true; do
 		read -rep $'\nExperimental Support for Firefox/Chrome Back/Forward hotkeys (Cmd+Left/Right)?\n(Keys could get stuck, switch windows or press ctrl &/or super to release) (y/n)\n' yn
 		case $yn in
-			[Yy]* ) exp='/sbin/runuser -l {username} -c "export DISPLAY={displayid};{homedir}/.config/ankinate/caret_status_xkey.sh\&";'; expsh='"{homedir}/.config/ankinate/caret_status_xkey.sh"'; break;;
+			[Yy]* ) exp='/sbin/runuser -l {username} -c "export DISPLAY={displayid};{homedir}/.config/ankikeys/caret_status_xkey.sh\&";'; expsh='"{homedir}/.config/ankikeys/caret_status_xkey.sh"'; break;;
 			[Nn]* ) exp=" "; expsh=" " break;;
 			# * ) echo "Please answer yes or no.";;
 		esac
@@ -226,21 +226,21 @@ if [[ $1 == "1" || $1 == "2" || $1 == "3" || $1 == "winmac" || $1 == "mac" || $1
 	fi
 
 	# echo "Transferring files..."
-	mkdir -p ~/.config/ankinate
+	mkdir -p ~/.config/ankikeys
 
 	# KDE xhost fix
 	mkdir -p ~/.kde/Autostart
-	echo -e '#!/bin/sh\rxhost +SI:localuser:root' > ~/.kde/Autostart/ankinatehost.sh
-	chmod +x ~/.kde/Autostart/ankinatehost.sh
+	echo -e '#!/bin/sh\rxhost +SI:localuser:root' > ~/.kde/Autostart/ankikeyshost.sh
+	chmod +x ~/.kde/Autostart/ankikeyshost.sh
 
 	# KDE startup - xhost fix
 	yes | cp -rf ./xkeysnail-config/xkeysnail.desktop ~/.config/autostart/xkeysnail.desktop
 
-	yes | cp -rf ./xkeysnail-config/xkeystart.sh ~/.config/ankinate/xkeystart.sh
-	yes | cp -rf ./xkeysnail-config/ankinate-multikey.py ./xkeysnail-config/ankinate-multikey.py.new
+	yes | cp -rf ./xkeysnail-config/xkeystart.sh ~/.config/ankikeys/xkeystart.sh
+	yes | cp -rf ./xkeysnail-config/ankikeys-multikey.py ./xkeysnail-config/ankikeys-multikey.py.new
 	yes | cp -rf ./xkeysnail-config/limitedadmins ./xkeysnail-config/limitedadmins.new
-	yes | cp -rf ./xkeysnail-config/prexk.sh ~/.config/ankinate/prexk.sh
-	yes | cp -rf ./system-config/caret_status_xkey.sh ~/.config/ankinate/caret_status_xkey.sh
+	yes | cp -rf ./xkeysnail-config/prexk.sh ~/.config/ankikeys/prexk.sh
+	yes | cp -rf ./system-config/caret_status_xkey.sh ~/.config/ankikeys/caret_status_xkey.sh
 	yes | cp -rf ./xkeysnail-config/xkeysnail.service ./xkeysnail-config/xkeysnail.service.new
 	# yes | cp -rf ./xkeysnail-config/xkeysnail.timer ~/.config/systemd/user/xkeysnail.timer
 	sed -i "s#{experimental-caret}#$exp#g" ./xkeysnail-config/xkeysnail.service.new
@@ -259,12 +259,12 @@ if [[ $1 == "1" || $1 == "2" || $1 == "3" || $1 == "winmac" || $1 == "mac" || $1
 	sudo mv ./xkeysnail-config/limitedadmins.new /etc/sudoers.d/limitedadmins
 	sed -i "s#{systemctl}#`which systemctl`#g" ~/.config/autostart/xkeysnail.desktop
 	sed -i "s#{xhost}#`which xhost`#g" ~/.config/autostart/xkeysnail.desktop
-	sed -i "s#{homedir}#`echo "$HOME"`#g" ~/.config/ankinate/prexk.sh
+	sed -i "s#{homedir}#`echo "$HOME"`#g" ~/.config/ankikeys/prexk.sh
 	sed -i "s/{displayid}/`echo "$DISPLAY"`/g" ./xkeysnail-config/xkeysnail.service.new
-	sed -i "s/{displayid}/`echo "$DISPLAY"`/g" ~/.config/ankinate/prexk.sh
+	sed -i "s/{displayid}/`echo "$DISPLAY"`/g" ~/.config/ankikeys/prexk.sh
 
 	if $vssublime ; then
-		perl -pi -e "s/(# )(.*)(- Sublime)/\$2\$3/g" ./xkeysnail-config/ankinate-multikey.py.new >/dev/null 2>&1
+		perl -pi -e "s/(# )(.*)(- Sublime)/\$2\$3/g" ./xkeysnail-config/ankikeys-multikey.py.new >/dev/null 2>&1
 	fi
 fi
 
@@ -278,30 +278,30 @@ if [[ $1 == "1" || $1 == "winmac" ]]; then
 	if ! ls /sys/module | grep apple ; then
 		removeAppleKB
 	fi
-	perl -pi -e "s/(# )(.*)(# WinMac)/\$2\$3/g" ./xkeysnail-config/ankinate-multikey.py.new
+	perl -pi -e "s/(# )(.*)(# WinMac)/\$2\$3/g" ./xkeysnail-config/ankikeys-multikey.py.new
 	if [[ $dename == "xfce" ]]; then
-		perl -pi -e "s/(# )(.*)(# xfce4)/\$2\$3/g" ./xkeysnail-config/ankinate-multikey.py.new
-		perl -pi -e "s/(\w.*)(# Default not-xfce4)/# \$1\$2/g" ./xkeysnail-config/ankinate-multikey.py.new
+		perl -pi -e "s/(# )(.*)(# xfce4)/\$2\$3/g" ./xkeysnail-config/ankikeys-multikey.py.new
+		perl -pi -e "s/(\w.*)(# Default not-xfce4)/# \$1\$2/g" ./xkeysnail-config/ankikeys-multikey.py.new
 	fi
 elif [[ $1 == "2" || $1 == "mac" ]]; then
 	removeAppleKB
-	perl -pi -e "s/(# )(.*)(# Mac)/\$2\$3/g" ./xkeysnail-config/ankinate-multikey.py.new
+	perl -pi -e "s/(# )(.*)(# Mac)/\$2\$3/g" ./xkeysnail-config/ankikeys-multikey.py.new
 	if [[ $dename == "xfce" ]]; then
-		perl -pi -e "s/(# )(.*)(# xfce4)/\$2\$3/g" ./xkeysnail-config/ankinate-multikey.py.new
-		perl -pi -e "s/(\w.*)(# Default not-xfce4)/# \$1\$2/g" ./xkeysnail-config/ankinate-multikey.py.new
+		perl -pi -e "s/(# )(.*)(# xfce4)/\$2\$3/g" ./xkeysnail-config/ankikeys-multikey.py.new
+		perl -pi -e "s/(\w.*)(# Default not-xfce4)/# \$1\$2/g" ./xkeysnail-config/ankikeys-multikey.py.new
 	fi
 elif [[ $1 == "3" || $1 == "chromebook" ]]; then
-	perl -pi -e "s/(# )(.*)(# Chromebook)/\$2\$3/g" ./xkeysnail-config/ankinate-multikey.py.new
-	perl -pi -e "s/(# )(.*)(# xfce4)/\$2\$3/g" ./xkeysnail-config/ankinate-multikey.py.new
-	perl -pi -e "s/(\w.*)(# Default)/# \$1\$2/g" ./xkeysnail-config/ankinate-multikey.py.new
+	perl -pi -e "s/(# )(.*)(# Chromebook)/\$2\$3/g" ./xkeysnail-config/ankikeys-multikey.py.new
+	perl -pi -e "s/(# )(.*)(# xfce4)/\$2\$3/g" ./xkeysnail-config/ankikeys-multikey.py.new
+	perl -pi -e "s/(\w.*)(# Default)/# \$1\$2/g" ./xkeysnail-config/ankikeys-multikey.py.new
 fi
 
 if $rightalt ; then
-	perl -pi -e "s/(\w.*)(Multi-language)/# \$1\$2/g" ./xkeysnail-config/ankinate-multikey.py.new >/dev/null 2>&1
+	perl -pi -e "s/(\w.*)(Multi-language)/# \$1\$2/g" ./xkeysnail-config/ankikeys-multikey.py.new >/dev/null 2>&1
 fi
 
 if [[ $1 == "1" || $1 == "2" || $1 == "3" || $1 == "winmac" || $1 == "mac" || $1 == "chromebook" ]]; then
-	mv ./xkeysnail-config/ankinate-multikey.py.new ~/.config/ankinate/ankinate-multikey.py
+	mv ./xkeysnail-config/ankikeys-multikey.py.new ~/.config/ankikeys/ankikeys-multikey.py
 	# if [ "$distro" == "fedora" ];then
 	sudo rm /etc/systemd/system/xkeysnail.service
 	if [ -d /usr/lib/systemd/system ];then
@@ -354,20 +354,20 @@ if [[ $1 == "1" || $1 == "2" || $1 == "3" || $1 == "winmac" || $1 == "mac" || $1
 	# grep -qF -- "$LINE" ~/.xinitrc || echo "$LINE" >> ~/.xinitrc
 
 	# remove ankikeys login startup
-	if test -f "~/.config/autostart/ankinate.desktop"; then
-		rm ~/.config/autostart/ankinate.desktop
+	if test -f "~/.config/autostart/ankikeys.desktop"; then
+		rm ~/.config/autostart/ankikeys.desktop
 	fi
 
-	echo -e "ankinate install is \e[1m\e[32mcomplete\e[0m.\n"
+	echo -e "ankikeys install is \e[1m\e[32mcomplete\e[0m.\n"
 	if `sudo systemctl is-active --quiet xkeysnail`;then
-		echo -e "ankinate \e[1m\e[32mxkeysnail service is running\e[0m.\n"
-		echo "Commands for controlling ankinate's xkeysnail service"
+		echo -e "ankikeys \e[1m\e[32mxkeysnail service is running\e[0m.\n"
+		echo "Commands for controlling ankikeys's xkeysnail service"
 		echo "sudo systemctl restart xkeysnail"
 		echo "sudo systemctl stop xkeysnail"
 		echo "sudo systemctl start xkeysnail"
 		echo "sudo systemctl status xkeysnail"
 	else
-		echo -e "ankinate \e[1m\e[91mxkeysnail service has failed.\e[0m"
+		echo -e "ankikeys \e[1m\e[91mxkeysnail service has failed.\e[0m"
 		echo "You can run 'sudo systemctl status xkeysnail' for more info"
 		echo "You can also run 'sudo journalctl -u xkeysnail'"
 	fi
@@ -379,14 +379,14 @@ if [[ $1 == "1" || $1 == "2" || $1 == "3" || $1 == "winmac" || $1 == "mac" || $1
 		echo -e "\e[1m\e[32mEnabled\e[0m mutli-language support."
 	fi
 elif [[ $1 == "5" || $1 == "uninstall" || $1 == "Uninstall" ]]; then
-	echo "Uninstalling ankinate - xkeysnail (udev)"
+	echo "Uninstalling ankikeys - xkeysnail (udev)"
 	uninstall
 	removeAppleKB
 	sudo systemctl stop xkeysnail
 	sudo systemctl disable xkeysnail
 	sudo rm /etc/sudoers.d/limitedadmins
 	rm ~/.config/autostart/xkeysnail.desktop
-	rm -rf ~/.config/ankinate
+	rm -rf ~/.config/ankikeys
 	sudo rm /etc/systemd/system/xkeysnail.service
 	sudo rm /etc/systemd/system/graphical.target.wants/xkeysnail.service
 	sudo rm /usr/lib/systemd/system/xkeysnail.service

@@ -21,8 +21,8 @@
 	{
         "name": "firefox",
         "run": "",
-        "run_onInput": "pkill -f ~/.config/ankinate/.firefox-nw",
-        "run_offInput": "xbindkeys -f $HOME/.config/ankinate/.firefox-nw",
+        "run_onInput": "pkill -f ~/.config/ankikeys/.firefox-nw",
+        "run_offInput": "xbindkeys -f $HOME/.config/ankikeys/.firefox-nw",
         "symbols": "",
         "types": "",
         "de": [],

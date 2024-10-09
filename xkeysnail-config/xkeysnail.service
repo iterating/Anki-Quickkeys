@@ -4,9 +4,9 @@ Description=xkeysnail
 [Service]
 Type=simple
 KillMode=process
-ExecStartPre=/bin/bash -c "{xhost} +SI:localuser:root && /sbin/runuser -l {username} -c {homedir}/.config/ankinate/prexk.sh"
-ExecStart=/usr/bin/sudo /bin/bash -c '{experimental-caret}{homedir}/.config/ankinate/xkeystart.sh /tmp/ankinate/xkeysnail/ankinate-multikey.py'
-ExecStop=/bin/bash -c 'me=$$;ps -ef | grep \'[t]mp/ankinate\' | awk -v me=$me \'$2 != me {print $2}\' | xargs kill;/usr/bin/killall dbus-monitor;/usr/bin/killall xkeysnail;{kill-caret}'
+ExecStartPre=/bin/bash -c "{xhost} +SI:localuser:root && /sbin/runuser -l {username} -c {homedir}/.config/ankikeys/prexk.sh"
+ExecStart=/usr/bin/sudo /bin/bash -c '{experimental-caret}{homedir}/.config/ankikeys/xkeystart.sh /tmp/ankikeys/xkeysnail/ankikeys-multikey.py'
+ExecStop=/bin/bash -c 'me=$$;ps -ef | grep \'[t]mp/ankikeys\' | awk -v me=$me \'$2 != me {print $2}\' | xargs kill;/usr/bin/killall dbus-monitor;/usr/bin/killall xkeysnail;{kill-caret}'
 Restart=on-failure
 RestartSec=3
 Environment=DISPLAY={displayid}

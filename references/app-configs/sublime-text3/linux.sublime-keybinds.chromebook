@@ -1,6 +1,6 @@
 [
 /*
-Custom macOS keymap for ankinate keymap
+Custom macOS keymap for ankikeys keymap
 */
 	{ "keys": ["ctrl+shift+n"], "command": "new_window" },
 	{ "keys": ["ctrl+shift+w"], "command": "close_window" },

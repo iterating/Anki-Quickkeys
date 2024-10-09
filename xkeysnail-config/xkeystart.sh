@@ -11,7 +11,7 @@ fi
 
 "$xkeyfullpath" --quiet --watch "$1" &
 
-inotifywait -m -e close_write,moved_to,create,modify /tmp/ankinate/xkeysnail |
+inotifywait -m -e close_write,moved_to,create,modify /tmp/ankikeys/xkeysnail |
 
 while read -r path; do
 	/usr/bin/killall xkeysnail

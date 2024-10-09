@@ -82,7 +82,7 @@ def keyboard_detect():
 
     if swap_behavior == 1:
         print("Setting up " + system_type + " keyswap as a service.")
-        print("You can disable and remove the service by using the following command in the ankinate directory.")
+        print("You can disable and remove the service by using the following command in the ankikeys directory.")
         print("./uninstall.sh")
 
         keyswapcmd = '/bin/bash -c "./keyswap_service.sh 1 0 ' + system_type + ' ' + str(internalid).strip() + ' ' + str(usbid).strip() + ' ' + str(chromeswap) + '"'
@@ -98,7 +98,7 @@ def keyboard_detect():
         print()
         print("An Apple keyboard with the hid_apple driver was detected.")
         print("Please run the following commands to swap alt/option and Command.")
-        print("Your ankinate keymapping will not work right on Apple keyboards without it.")
+        print("Your ankikeys keymapping will not work right on Apple keyboards without it.")
         print()
         print("echo '1' | sudo tee -a /sys/module/hid_apple/parameters/swap_opt_cmd")
         print('echo "options hid_apple swap_opt_cmd=1" | sudo tee -a /etc/modprobe.d/hid_apple.conf')
